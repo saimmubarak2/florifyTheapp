@@ -1,0 +1,13 @@
+.input-container input {
+  width: 100%;
+  padding: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 0.7rem;
+  outline: none;
+  font-size: 1rem;
+}
+
+.input-container input:focus {
+  border-color: #144345;
+  box-shadow: 0 0 5px rgba(20, 67, 69, 0.5);
+}

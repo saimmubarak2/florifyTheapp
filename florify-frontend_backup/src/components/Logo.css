@@ -1,0 +1,18 @@
+/* src/components/Logo.css */
+.logo-float {
+  background: #144345;
+  border-radius: 999px;
+  padding: 0.6rem 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(20,67,69,0.12);
+  animation: fadeInScale 700ms cubic-bezier(.2,.9,.2,1) both;
+}
+
+.logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 999px;
+}

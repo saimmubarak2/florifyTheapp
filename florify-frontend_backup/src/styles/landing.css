@@ -1,0 +1,732 @@
+/* ==================== LANDING PAGE STYLES ==================== */
+
+.landing-container {
+  min-height: 100vh;
+  background: #fafafa;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ==================== BACKGROUND GRID ==================== */
+.background-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ==================== FLOATING LOGO ==================== */
+.floating-logo {
+  position: fixed;
+  top: 28px;
+  right: 53px;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.floating-logo.scrolled {
+  transform: scale(0.9);
+  opacity: 0.8;
+}
+
+.logo-box {
+  width: 180px;
+  height: 73px;
+  background: #144345;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(20, 67, 69, 0.3);
+  transition: all 0.3s ease;
+}
+
+.logo-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(20, 67, 69, 0.4);
+}
+
+.logo-text {
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ==================== FLOATING NAVBAR ==================== */
+.floating-navbar {
+  position: fixed;
+  top: 28px;
+  left: 53px;
+  width: 703px;
+  height: 73px;
+  background: #144345;
+  border-radius: 40px;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  box-shadow: 0 4px 20px rgba(20, 67, 69, 0.3);
+}
+
+.floating-navbar.scrolled {
+  transform: scale(0.95);
+  opacity: 0.9;
+}
+
+.navbar-content {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.navbar-link {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+.navbar-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.logout-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  margin-left: 20px;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+/* ==================== HERO SECTION ==================== */
+.hero-section {
+  padding: 120px 53px 80px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.hero-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 60px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 600px;
+  z-index: 2;
+}
+
+/* ==================== TAGLINE ==================== */
+.tagline-container {
+  margin-bottom: 30px;
+}
+
+.tagline {
+  display: inline-block;
+  background: rgba(20, 67, 69, 0.1);
+  color: #144345;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid rgba(20, 67, 69, 0.2);
+}
+
+/* ==================== MAIN HEADLINE ==================== */
+.main-headline {
+  margin-bottom: 30px;
+  line-height: 1.1;
+}
+
+.headline-text {
+  font-size: 64px;
+  font-weight: 800;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+/* ==================== HERO SUBTEXT ==================== */
+.hero-subtext {
+  margin-bottom: 40px;
+  max-width: 500px;
+}
+
+.subtext-content {
+  font-size: 18px;
+  color: #666;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* ==================== CTA BUTTON ==================== */
+.cta-container {
+  margin-bottom: 40px;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.create-garden-cta {
+  background: #144345;
+  color: white;
+  border: none;
+  padding: 20px 45px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+  min-height: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-garden-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.create-garden-cta:hover::before {
+  left: 0;
+}
+
+.create-garden-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(20, 67, 69, 0.4);
+}
+
+.create-garden-cta span {
+  position: relative;
+  z-index: 1;
+}
+
+.create-blueprint-cta {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 20px 45px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.create-blueprint-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.create-blueprint-cta:hover::before {
+  left: 100%;
+}
+
+.create-blueprint-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+}
+
+.create-blueprint-cta span {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==================== HERO IMAGE ==================== */
+.hero-image-container {
+  flex: 1;
+  max-width: 600px;
+  position: relative;
+  z-index: 1;
+  margin-left: 40px;
+}
+
+.hero-image {
+  width: 100%;
+  height: 500px;
+  background: white;
+  border-radius: 30px 20px 40px 15px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  filter: blur(0.3px);
+  background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 100%);
+  background-size: 20px 20px;
+  animation: seasonalBackground 8s ease-in-out infinite;
+}
+
+@keyframes seasonalBackground {
+  0%, 25% {
+    background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 50%, #c3e6cb 100%);
+  }
+  25%, 50% {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 50%, #fdcb6e 100%);
+  }
+  50%, 75% {
+    background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 50%, #a2d2ff 100%);
+  }
+  75%, 100% {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+  }
+}
+
+/* ==================== SEASONAL IMAGE CONTAINER ==================== */
+.seasonal-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.seasonal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.8s ease-in-out;
+  filter: brightness(0.9) contrast(1.1);
+}
+
+.seasonal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg, 
+    rgba(20, 67, 69, 0.1) 0%, 
+    rgba(20, 67, 69, 0.05) 50%, 
+    rgba(20, 67, 69, 0.1) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #144345;
+  z-index: 2;
+}
+
+.seasonal-icon {
+  font-size: 80px;
+  display: block;
+  margin-bottom: 20px;
+  transition: all 0.5s ease-in-out;
+  animation: seasonalPulse 2s ease-in-out infinite;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes seasonalPulse {
+  0%, 100% { 
+    transform: scale(1) rotate(0deg);
+  }
+  50% { 
+    transform: scale(1.05) rotate(2deg);
+  }
+}
+
+.seasonal-overlay p {
+  font-size: 18px;
+  font-weight: 600;
+  color: #144345;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 5px rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+/* ==================== GARDENS SECTION ==================== */
+.gardens-section {
+  padding: 80px 53px;
+  background: white;
+  position: relative;
+  z-index: 2;
+}
+
+.gardens-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.gardens-title {
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.section-title-text {
+  font-size: 48px;
+  font-weight: 800;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+/* ==================== GARDEN CARDS ==================== */
+.gardens-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.garden-card-wrapper {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== LOADING STATES ==================== */
+.loading-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: #666;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e0e0e0;
+  border-top: 4px solid #144345;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: #c00;
+}
+
+.error-state p {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 100px 20px;
+  color: #666;
+}
+
+.empty-icon {
+  font-size: 80px;
+  margin-bottom: 30px;
+}
+
+.empty-state h4 {
+  font-size: 28px;
+  color: #000000;
+  margin-bottom: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.empty-state p {
+  font-size: 18px;
+  margin-bottom: 40px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.empty-state-actions {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: white;
+  border-radius: 24px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ==================== TYPING ANIMATION ==================== */
+.typewriter-text {
+  display: inline-block;
+}
+
+.typewriter-text.typing .cursor {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.cursor {
+  color: #144345;
+  font-weight: 300;
+}
+
+/* ==================== RESPONSIVE STYLES ==================== */
+@media (max-width: 1200px) {
+  .floating-navbar {
+    width: 600px;
+  }
+  
+  .hero-content {
+    gap: 40px;
+  }
+  
+  .headline-text {
+    font-size: 56px;
+  }
+}
+
+@media (max-width: 968px) {
+  .floating-logo {
+    right: 20px;
+  }
+  
+  .floating-navbar {
+    left: 20px;
+    width: calc(100% - 40px);
+    max-width: 600px;
+  }
+  
+  .navbar-content {
+    gap: 20px;
+  }
+  
+  .navbar-link {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  
+  .hero-section {
+    padding: 100px 20px 60px;
+  }
+  
+  .hero-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .headline-text {
+    font-size: 48px;
+  }
+  
+  .hero-image {
+    height: 300px;
+  }
+  
+  .gardens-section {
+    padding: 60px 20px;
+  }
+  
+  .section-title-text {
+    font-size: 36px;
+  }
+  
+  .gardens-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .floating-logo {
+    top: 20px;
+    right: 20px;
+  }
+  
+  .floating-navbar {
+    top: 20px;
+    left: 20px;
+    width: calc(100% - 40px);
+    height: 60px;
+    padding: 0 20px;
+  }
+  
+  .navbar-content {
+    gap: 15px;
+  }
+  
+  .navbar-link {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+  
+  .logo-box {
+    width: 150px;
+    height: 60px;
+  }
+  
+  .logo-text {
+    font-size: 16px;
+  }
+  
+  .headline-text {
+    font-size: 40px;
+  }
+  
+  .subtext-content {
+    font-size: 16px;
+  }
+  
+  .create-garden-cta {
+    padding: 16px 32px;
+    font-size: 14px;
+  }
+  
+  .section-title-text {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+    gap: 10px;
+  }
+  
+  .navbar-content {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .headline-text {
+    font-size: 32px;
+  }
+  
+  .hero-image {
+    height: 250px;
+  }
+  
+  .section-title-text {
+    font-size: 28px;
+  }
+  
+  .empty-state h4 {
+    font-size: 24px;
+  }
+  
+  .empty-state p {
+    font-size: 16px;
+  }
+}

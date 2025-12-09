@@ -1,0 +1,378 @@
+/* Import Poppins font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ==================== BASE STYLES ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #ffffff;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* ==================== CONTAINER STYLES ==================== */
+.auth-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.auth-left {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  position: relative;
+  min-height: 100vh;
+}
+
+.form-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ==================== LOGO STYLES ==================== */
+.logo-container {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-container.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.logo-box {
+  background: #144345;
+  border-radius: 20px;
+  padding: 12px 24px;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(20, 67, 69, 0.2);
+}
+
+.logo-text {
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* ==================== IMAGE SECTION STYLES ==================== */
+.image-section {
+  flex: 1;
+  position: relative;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-section.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.image-container {
+  height: 100%;
+  position: relative;
+  background: linear-gradient(135deg, #144345 0%, #2a6366 100%);
+  border-radius: 0 0 0 60px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.03) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  pointer-events: none;
+}
+
+.image-overlay {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 40px;
+  color: white;
+}
+
+.overlay-title {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.overlay-text {
+  font-size: 14px;
+  opacity: 0.9;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.feature-badges {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.badge {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* ==================== FORM STYLES ==================== */
+.auth-title {
+  font-size: 32px;
+  color: #144345;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.auth-subtitle {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.auth-form {
+  width: 100%;
+}
+
+.input-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+  background: white;
+  margin-bottom: 20px;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #144345;
+  box-shadow: 0 0 0 3px rgba(20, 67, 69, 0.1);
+}
+
+.input-field::placeholder {
+  color: #999;
+}
+
+.password-hint {
+  font-size: 12px;
+  color: #666;
+  margin-top: -15px;
+  margin-bottom: 20px;
+}
+
+/* ==================== BUTTON STYLES ==================== */
+.primary-button {
+  width: 100%;
+  padding: 12px 24px;
+  background: white;
+  color: #144345;
+  border: 2px solid #144345;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Poppins', sans-serif;
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.primary-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #144345;
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.primary-button:hover::before {
+  left: 0;
+}
+
+.primary-button span {
+  position: relative;
+  z-index: 1;
+}
+
+.primary-button:hover {
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(20, 67, 69, 0.3);
+}
+
+.primary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.primary-button:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* ==================== LINK STYLES ==================== */
+.auth-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.auth-link a {
+  color: #144345;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.auth-link a:hover {
+  text-decoration: underline;
+}
+
+.auth-link a.disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+/* ==================== ERROR MESSAGE STYLES ==================== */
+.error-message {
+  background: #fee;
+  border: 1px solid #fcc;
+  color: #c00;
+  padding: 10px;
+  border-radius: 6px;
+  margin: 10px 0;
+  font-size: 13px;
+  animation: shake 0.5s;
+}
+
+/* ==================== ANIMATION STYLES ==================== */
+.animated-text {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animated-text.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Typing animation effect */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* ==================== RESPONSIVE STYLES ==================== */
+@media (max-width: 968px) {
+  .auth-container {
+    flex-direction: column;
+  }
+
+  .image-section {
+    display: none;
+  }
+
+  .auth-left {
+    padding: 30px;
+    min-height: 100vh;
+  }
+
+  .logo-container {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-bottom: 40px;
+  }
+
+  .form-container {
+    padding-top: 20px;
+  }
+
+  .auth-title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-left {
+    padding: 20px;
+  }
+
+  .auth-title {
+    font-size: 24px;
+  }
+
+  .input-field {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .primary-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .auth-subtitle {
+    font-size: 13px;
+  }
+}

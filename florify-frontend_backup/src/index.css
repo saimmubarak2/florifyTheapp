@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import './styles/landing.css';
+@import './styles/garden-card.css';
+@import './styles/garden-wizard.css';
+@import './styles/empty-garden-wizard.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff;
+  color: #144345;
+}

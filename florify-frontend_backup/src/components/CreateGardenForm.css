@@ -1,0 +1,91 @@
+.create-garden-form {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.create-garden-form h2 {
+  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 100px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group textarea:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.submit-button {
+  flex: 1;
+  max-width: 200px;
+}
+
+.cancel-button {
+  flex: 1;
+  max-width: 200px;
+}
+
+.error-message {
+  background: #fee;
+  color: #c33;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .create-garden-form {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .submit-button,
+  .cancel-button {
+    max-width: none;
+  }
+}
