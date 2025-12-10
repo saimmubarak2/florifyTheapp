@@ -2,16 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import TypewriterText from '../components/TypewriterText';
-import SimpleCreateGardenWizard from '../components/SimpleCreateGardenWizard';
-import EmptyGardenWizard from '../components/EmptyGardenWizard/EmptyGardenWizard';
+import IntegratedGardenWizard from '../components/IntegratedGardenWizard/IntegratedGardenWizard';
 import GardenCard from '../components/GardenCard';
-import { getGardens } from '../api/gardens';
+import { getGardensFromLocal } from '../utils/localDatabase';
 import '../styles/landing.css';
 
 function LandingPage({ onLogout, userEmail }) {
   const navigate = useNavigate();
   const [showWizard, setShowWizard] = useState(false);
-  const [showEmptyGardenWizard, setShowEmptyGardenWizard] = useState(false);
   const [gardens, setGardens] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -30,6 +28,7 @@ function LandingPage({ onLogout, userEmail }) {
   // Fetch user's gardens on component mount
   useEffect(() => {
     fetchGardens();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Seasonal animation effect
@@ -50,11 +49,11 @@ function LandingPage({ onLogout, userEmail }) {
 
   const seasonalIcons = ['🌸', '☀️', '🍂', '❄️'];
 
-  const fetchGardens = async () => {
+  const fetchGardens = () => {
     try {
       setLoading(true);
-      const response = await getGardens();
-      setGardens(response.gardens || []);
+      const localGardens = getGardensFromLocal(userEmail);
+      setGardens(localGardens || []);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -65,7 +64,6 @@ function LandingPage({ onLogout, userEmail }) {
   const handleGardenCreated = (newGarden) => {
     setGardens(prev => [newGarden, ...prev]);
     setShowWizard(false);
-    setShowEmptyGardenWizard(false);
   };
 
   const handleGardenClick = (gardenId) => {
@@ -73,8 +71,7 @@ function LandingPage({ onLogout, userEmail }) {
   };
 
   const navbarLinks = [
-    { text: 'ADD GARDEN', action: () => setShowWizard(true) },
-    { text: 'CREATE BLUEPRINT', action: () => setShowEmptyGardenWizard(true) },
+    { text: 'CREATE GARDEN', action: () => setShowWizard(true) },
     { text: 'YOUR GARDENS', action: () => document.getElementById('gardens-section')?.scrollIntoView({ behavior: 'smooth' }) },
     { text: 'INSPIRATION', action: () => console.log('Inspiration clicked') },
     { text: 'TIPS', action: () => console.log('Tips clicked') }
@@ -153,13 +150,7 @@ function LandingPage({ onLogout, userEmail }) {
                     onClick={() => setShowWizard(true)}
                     className="create-garden-cta"
                   >
-                    CREATE GARDEN
-                  </Button>
-                  <Button 
-                    onClick={() => setShowEmptyGardenWizard(true)}
-                    className="create-blueprint-cta"
-                  >
-                    CREATE BLUEPRINT 📐
+                    CREATE GARDEN 🌱
                   </Button>
                 </div>
               </TypewriterText>
@@ -215,10 +206,7 @@ function LandingPage({ onLogout, userEmail }) {
               <p>Create your first garden to get started!</p>
               <div className="empty-state-actions">
                 <Button onClick={() => setShowWizard(true)}>
-                  CREATE YOUR FIRST GARDEN
-                </Button>
-                <Button onClick={() => setShowEmptyGardenWizard(true)}>
-                  CREATE GARDEN BLUEPRINT 📐
+                  CREATE YOUR FIRST GARDEN 🌱
                 </Button>
               </div>
             </div>
@@ -243,21 +231,8 @@ function LandingPage({ onLogout, userEmail }) {
 
       {/* Create Garden Wizard Modal */}
       {showWizard && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <SimpleCreateGardenWizard 
-              onClose={() => setShowWizard(false)}
-              onGardenCreated={handleGardenCreated}
-              userEmail={userEmail}
-            />
-          </div>
-        </div>
-      )}
-
-      {/* Empty Garden Wizard Modal */}
-      {showEmptyGardenWizard && (
-        <EmptyGardenWizard 
-          onClose={() => setShowEmptyGardenWizard(false)}
+        <IntegratedGardenWizard 
+          onClose={() => setShowWizard(false)}
           onGardenCreated={handleGardenCreated}
           userEmail={userEmail}
         />

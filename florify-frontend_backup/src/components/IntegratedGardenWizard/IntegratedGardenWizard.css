@@ -1,0 +1,404 @@
+/* Integrated Garden Wizard Styles */
+
+.integrated-wizard-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.integrated-wizard-modal {
+  width: 95vw;
+  max-width: 1400px;
+  height: 90vh;
+  max-height: 900px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header Styles */
+.integrated-wizard-modal .wizard-header {
+  background: linear-gradient(135deg, #144345 0%, #2a6366 100%);
+  color: white;
+  padding: 24px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.integrated-wizard-modal .wizard-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.integrated-wizard-modal .close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.integrated-wizard-modal .close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* Progress Steps */
+.integrated-wizard-modal .wizard-progress {
+  background: #f8f9fa;
+  padding: 20px 30px;
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+
+.integrated-wizard-modal .progress-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: white;
+  border: 2px solid #e0e0e0;
+  transition: all 0.3s ease;
+  min-width: 140px;
+  flex: 1;
+}
+
+.integrated-wizard-modal .progress-step.active {
+  border-color: #144345;
+  background: rgba(20, 67, 69, 0.05);
+}
+
+.integrated-wizard-modal .progress-step.current {
+  border-color: #144345;
+  background: linear-gradient(135deg, #144345 0%, #2a6366 100%);
+  color: white;
+}
+
+.integrated-wizard-modal .step-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.integrated-wizard-modal .progress-step.active .step-number {
+  background: #144345;
+  color: white;
+}
+
+.integrated-wizard-modal .progress-step.current .step-number {
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.integrated-wizard-modal .step-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.integrated-wizard-modal .step-title-small {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.integrated-wizard-modal .step-desc-small {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.integrated-wizard-modal .progress-step.current .step-title-small,
+.integrated-wizard-modal .progress-step.current .step-desc-small {
+  color: white;
+}
+
+/* Content Area */
+.integrated-wizard-modal .wizard-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.integrated-wizard-modal .step-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.integrated-wizard-modal .step-header {
+  margin-bottom: 30px;
+}
+
+.integrated-wizard-modal .step-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #144345;
+  margin: 0 0 10px 0;
+}
+
+.integrated-wizard-modal .step-description {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Input Groups */
+.integrated-wizard-modal .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 600px;
+}
+
+.integrated-wizard-modal .input-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.integrated-wizard-modal .city-select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+
+.integrated-wizard-modal .city-select:focus {
+  outline: none;
+  border-color: #144345;
+  box-shadow: 0 0 0 3px rgba(20, 67, 69, 0.1);
+}
+
+.integrated-wizard-modal .description-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 120px;
+  transition: all 0.3s ease;
+}
+
+.integrated-wizard-modal .description-textarea:focus {
+  outline: none;
+  border-color: #144345;
+  box-shadow: 0 0 0 3px rgba(20, 67, 69, 0.1);
+}
+
+.integrated-wizard-modal .description-textarea::placeholder {
+  color: #999;
+}
+
+/* Floorplan Step */
+.integrated-wizard-modal .floorplan-step {
+  height: 100%;
+}
+
+.integrated-wizard-modal .floorplan-step .step-header {
+  margin-bottom: 15px;
+}
+
+.integrated-wizard-modal .floorplan-container {
+  flex: 1;
+  min-height: 400px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+.integrated-wizard-modal .completion-message {
+  margin-top: 15px;
+  padding: 12px 20px;
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 8px;
+  color: #155724;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Actions */
+.integrated-wizard-modal .wizard-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+  flex-shrink: 0;
+}
+
+.integrated-wizard-modal .action-left,
+.integrated-wizard-modal .action-right {
+  display: flex;
+  gap: 12px;
+}
+
+.integrated-wizard-modal .primary-btn {
+  background: linear-gradient(135deg, #144345 0%, #2a6366 100%);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.integrated-wizard-modal .primary-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(20, 67, 69, 0.3);
+}
+
+.integrated-wizard-modal .primary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.integrated-wizard-modal .secondary-btn {
+  background: white;
+  color: #144345;
+  border: 2px solid #144345;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.integrated-wizard-modal .secondary-btn:hover {
+  background: #144345;
+  color: white;
+}
+
+.integrated-wizard-modal .save-btn {
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+  padding: 14px 32px;
+}
+
+.integrated-wizard-modal .save-btn:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(39, 174, 96, 0.3);
+}
+
+/* Error Message */
+.integrated-wizard-modal .error-message {
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .integrated-wizard-overlay {
+    padding: 10px;
+  }
+
+  .integrated-wizard-modal {
+    height: 95vh;
+    border-radius: 12px;
+  }
+
+  .integrated-wizard-modal .wizard-header {
+    padding: 16px 20px;
+  }
+
+  .integrated-wizard-modal .wizard-title {
+    font-size: 18px;
+  }
+
+  .integrated-wizard-modal .wizard-progress {
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  .integrated-wizard-modal .progress-step {
+    min-width: 100px;
+    padding: 8px 12px;
+  }
+
+  .integrated-wizard-modal .step-info {
+    display: none;
+  }
+
+  .integrated-wizard-modal .wizard-content {
+    padding: 20px;
+  }
+
+  .integrated-wizard-modal .step-title {
+    font-size: 22px;
+  }
+
+  .integrated-wizard-modal .wizard-actions {
+    padding: 16px 20px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .integrated-wizard-modal .action-left,
+  .integrated-wizard-modal .action-right {
+    width: 100%;
+  }
+
+  .integrated-wizard-modal .primary-btn,
+  .integrated-wizard-modal .secondary-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

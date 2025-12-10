@@ -1,161 +1,504 @@
+/* Garden Detail Page Styles */
+
 .garden-detail-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+  padding: 20px;
 }
 
 .garden-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
   background: white;
   border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  max-width: 800px;
-  width: 100%;
-  animation: slideUp 0.6s ease-out;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* Header Styles */
 .garden-header {
+  background: linear-gradient(135deg, #144345 0%, #2a6366 100%);
+  color: white;
+  padding: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid #f0f0f0;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  margin-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+.back-button:hover {
+  color: white;
 }
 
 .garden-header h1 {
-  color: #333;
-  font-size: 2.5rem;
   margin: 0;
+  font-size: 32px;
   font-weight: 700;
+}
+
+.garden-city {
+  font-size: 16px;
+  opacity: 0.9;
 }
 
 .garden-actions {
   display: flex;
-  gap: 1rem;
+  gap: 12px;
 }
 
+.garden-actions button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid white;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: white;
+  color: #144345;
+}
+
+.delete-btn {
+  background: rgba(231, 76, 60, 0.2);
+  border: 2px solid #e74c3c;
+  color: #e74c3c;
+}
+
+.delete-btn:hover {
+  background: #e74c3c;
+  color: white;
+}
+
+.save-btn {
+  background: #27ae60;
+  border: none;
+  color: white;
+}
+
+.save-btn:hover {
+  background: #229954;
+}
+
+.cancel-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid white;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background: white;
+  color: #144345;
+}
+
+/* Content Styles */
 .garden-content {
-  margin-bottom: 2rem;
+  padding: 30px;
 }
 
+.garden-content.edit-mode {
+  background: #f8f9fa;
+}
+
+/* Edit Form */
 .edit-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  max-width: 600px;
 }
 
 .form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  margin-bottom: 20px;
 }
 
 .form-group label {
+  display: block;
   font-weight: 600;
   color: #333;
-  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.city-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.city-select:focus {
+  outline: none;
+  border-color: #144345;
 }
 
 .form-group textarea {
-  padding: 1rem;
+  width: 100%;
+  padding: 12px 16px;
   border: 2px solid #e0e0e0;
-  border-radius: 10px;
-  font-size: 1rem;
+  border-radius: 8px;
+  font-size: 16px;
   font-family: inherit;
   resize: vertical;
-  min-height: 100px;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .form-group textarea:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #144345;
 }
 
-.garden-info {
+/* Floorplan Section */
+.floorplan-section {
+  margin-bottom: 40px;
+}
+
+.floorplan-section h2 {
+  margin: 0 0 20px 0;
+  color: #144345;
+  font-size: 24px;
+}
+
+.image-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  padding: 12px 24px;
+  border: 2px solid #e0e0e0;
+  background: white;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+  border-color: #144345;
+}
+
+.tab-btn.active {
+  background: #144345;
+  border-color: #144345;
+  color: white;
+}
+
+.floorplan-image-container {
+  background: #f8f9fa;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  margin-bottom: 20px;
+}
+
+.floorplan-image {
+  max-width: 100%;
+  max-height: 500px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.no-image {
+  color: #999;
+  font-size: 18px;
+}
+
+.download-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.download-btn {
+  background: linear-gradient(135deg, #144345 0%, #2a6366 100%);
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(20, 67, 69, 0.3);
+}
+
+/* Measurements Section */
+.measurements-section {
+  margin-bottom: 40px;
+  background: #f0f8f0;
+  padding: 25px;
+  border-radius: 12px;
+  border: 2px solid #c3e6cb;
+}
+
+.measurements-section h2 {
+  margin: 0 0 20px 0;
+  color: #155724;
+  font-size: 22px;
+}
+
+.measurements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.measurement-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e0e0e0;
+}
+
+.measurement-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.measurement-label {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.measurement-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #144345;
+  margin-bottom: 8px;
+}
+
+.measurement-converted {
+  font-size: 12px;
+  color: #888;
+}
+
+/* Info Section */
+.info-section {
+  margin-bottom: 40px;
+}
+
+.info-section h2 {
+  margin: 0 0 20px 0;
+  color: #144345;
+  font-size: 22px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.info-card {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 8px;
 }
 
-.info-section h3 {
-  color: #667eea;
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
+.info-label {
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   font-weight: 600;
 }
 
-.info-section p {
-  color: #666;
-  font-size: 1.1rem;
-  line-height: 1.6;
+.info-value {
+  font-size: 18px;
+  color: #333;
+  font-weight: 600;
+}
+
+.description-section {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.description-section h3 {
+  margin: 0 0 10px 0;
+  color: #144345;
+  font-size: 16px;
+}
+
+.description-section p {
   margin: 0;
+  color: #555;
+  line-height: 1.6;
 }
 
-.garden-footer {
-  display: flex;
-  justify-content: center;
-  padding-top: 1rem;
-  border-top: 2px solid #f0f0f0;
+/* Blueprint Data Section */
+.blueprint-data-section {
+  margin-bottom: 20px;
 }
 
-.loading, .error {
+.blueprint-data-section h2 {
+  margin: 0 0 20px 0;
+  color: #144345;
+  font-size: 22px;
+}
+
+.elements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.element-card {
+  padding: 20px;
+  border-radius: 12px;
   text-align: center;
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
-.loading {
-  color: #667eea;
-  font-size: 1.2rem;
+.element-card.buildings {
+  background: rgba(231, 76, 60, 0.1);
+  border: 2px solid #e74c3c;
+}
+
+.element-card.pathways {
+  background: rgba(127, 140, 141, 0.1);
+  border: 2px solid #7f8c8d;
+}
+
+.element-card.boundaries {
+  background: rgba(142, 68, 173, 0.1);
+  border: 2px solid #8e44ad;
+}
+
+.element-icon {
+  font-size: 28px;
+}
+
+.element-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.element-count {
+  font-size: 24px;
+  font-weight: 700;
+  color: #144345;
+}
+
+/* Footer */
+.garden-footer {
+  padding: 20px 30px;
+  background: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+}
+
+.back-btn {
+  background: white;
+  border: 2px solid #144345;
+  color: #144345;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: #144345;
+  color: white;
+}
+
+/* Loading and Error States */
+.loading, .error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+  padding: 40px;
 }
 
 .error h2 {
   color: #e74c3c;
-  margin-bottom: 1rem;
+  margin-bottom: 10px;
 }
 
 .error p {
   color: #666;
-  margin-bottom: 1.5rem;
+  margin-bottom: 20px;
 }
 
-/* Responsive design */
+/* Responsive Design */
 @media (max-width: 768px) {
-  .garden-detail-page {
-    padding: 1rem;
-  }
-  
-  .garden-detail-container {
-    padding: 1.5rem;
-  }
-  
   .garden-header {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: stretch;
+    padding: 20px;
   }
-  
+
   .garden-header h1 {
-    font-size: 2rem;
-    text-align: center;
+    font-size: 24px;
   }
-  
+
   .garden-actions {
-    justify-content: center;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .garden-content {
+    padding: 20px;
+  }
+
+  .image-tabs {
+    flex-direction: column;
+  }
+
+  .download-buttons {
+    flex-direction: column;
+  }
+
+  .download-btn {
+    width: 100%;
+    text-align: center;
   }
 }
