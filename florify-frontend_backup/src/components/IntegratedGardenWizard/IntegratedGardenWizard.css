@@ -367,6 +367,22 @@
   width: 100%;
 }
 
+/* Loading Floorplan State */
+.integrated-wizard-modal .loading-floorplan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 16px;
+  color: #144345;
+}
+
+.integrated-wizard-modal .loading-floorplan p {
+  font-size: 16px;
+  font-weight: 500;
+}
+
 /* Loading Overlay */
 .integrated-wizard-modal .loading-overlay {
   position: absolute;

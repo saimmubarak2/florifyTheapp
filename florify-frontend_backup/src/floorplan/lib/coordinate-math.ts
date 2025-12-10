@@ -1,59 +1,83 @@
-/**
- * Coordinate conversion and geometry helpers for the floorplan builder
- */
-
-import {
-  MM_TO_INCHES,
-  A2_SHEET_HEIGHT_MM,
+import { 
+  MM_TO_INCHES, 
+  A2_SHEET_HEIGHT_MM, 
   A2_WIDTH_FT,
   A2_HEIGHT_FT,
-} from '../schema.js';
+  type Point, 
+  type ViewTransform 
+} from "@shared/schema";
 
 // ============================================
 // COORDINATE CONVERSION FUNCTIONS
 // ============================================
 
-export function pixelsPerFoot(dpi) {
+export function pixelsPerFoot(dpi: number): number {
+  // Calculate pixels per foot based on the A2 sheet scale
+  // Scale: 191.5ft = 420mm on paper
+  // A2_WIDTH_FT (191.5ft) corresponds to A2_SHEET_HEIGHT_MM (420mm) in portrait orientation
   const paperHeightInches = A2_SHEET_HEIGHT_MM * MM_TO_INCHES;
   const paperHeightPixels = paperHeightInches * dpi;
-  return paperHeightPixels / A2_WIDTH_FT;
+  return paperHeightPixels / A2_WIDTH_FT; // Use A2_WIDTH_FT (191.5) not A2_HEIGHT_FT
 }
 
-export function mmToPixels(mm, dpi) {
+export function mmToPixels(mm: number, dpi: number): number {
   return (mm * MM_TO_INCHES) * dpi;
 }
 
-export function worldToCanvas(point, viewTransform, editingDPI, canvasWidth, canvasHeight) {
+export function worldToCanvas(
+  point: Point,
+  viewTransform: ViewTransform,
+  editingDPI: number,
+  canvasWidth: number,
+  canvasHeight: number
+): Point {
   const ppf = pixelsPerFoot(editingDPI);
   
+  // Calculate the center of the canvas
   const canvasCenterX = canvasWidth / 2;
   const canvasCenterY = canvasHeight / 2;
   
+  // Offset world coordinates so the A2 sheet center (not origin) maps to canvas center
   const offsetX = point.x - (A2_WIDTH_FT / 2);
   const offsetY = point.y - (A2_HEIGHT_FT / 2);
   
+  // Transform world coordinates relative to canvas center
+  // This ensures the A2 sheet stays centered on the canvas during zoom/pan
   return {
     x: canvasCenterX + (offsetX * ppf * viewTransform.zoom) + viewTransform.panX,
     y: canvasCenterY + (offsetY * ppf * viewTransform.zoom) + viewTransform.panY,
   };
 }
 
-export function canvasToWorld(point, viewTransform, editingDPI, canvasWidth, canvasHeight) {
+export function canvasToWorld(
+  point: Point,
+  viewTransform: ViewTransform,
+  editingDPI: number,
+  canvasWidth: number,
+  canvasHeight: number
+): Point {
   const ppf = pixelsPerFoot(editingDPI);
   
+  // Calculate the center of the canvas
   const canvasCenterX = canvasWidth / 2;
   const canvasCenterY = canvasHeight / 2;
   
+  // Convert canvas coordinates back to world coordinates
   const worldX = (point.x - canvasCenterX - viewTransform.panX) / (ppf * viewTransform.zoom);
   const worldY = (point.y - canvasCenterY - viewTransform.panY) / (ppf * viewTransform.zoom);
   
+  // Add back the sheet center offset
   return {
     x: worldX + (A2_WIDTH_FT / 2),
     y: worldY + (A2_HEIGHT_FT / 2),
   };
 }
 
-export function worldToExport(point, dpi, exportOrigin = { x: 0, y: 0 }) {
+export function worldToExport(
+  point: Point,
+  dpi: number,
+  exportOrigin: Point = { x: 0, y: 0 }
+): Point {
   const ppf = pixelsPerFoot(dpi);
   return {
     x: (point.x - exportOrigin.x) * ppf,
@@ -61,17 +85,50 @@ export function worldToExport(point, dpi, exportOrigin = { x: 0, y: 0 }) {
   };
 }
 
+/**
+ * Convert world coordinates to canvas coordinates for export rendering
+ * Unlike worldToCanvas, this maps world (0,0) to canvas (0,0) without centering
+ * Used for PDF/PNG export where the canvas exactly matches the A2 sheet dimensions
+ */
+export function worldToCanvasExport(
+  point: Point,
+  dpi: number,
+  canvasWidth: number,
+  canvasHeight: number
+): Point {
+  const ppf = pixelsPerFoot(dpi);
+
+  // Direct mapping: world (0,0) -> canvas (0,0)
+  // No centering, no zoom, no pan
+  return {
+    x: point.x * ppf,
+    y: point.y * ppf,
+  };
+}
+
+export function exportToWorld(
+  point: Point,
+  dpi: number,
+  exportOrigin: Point = { x: 0, y: 0 }
+): Point {
+  const ppf = pixelsPerFoot(dpi);
+  return {
+    x: (point.x / ppf) + exportOrigin.x,
+    y: (point.y / ppf) + exportOrigin.y,
+  };
+}
+
 // ============================================
 // GEOMETRY HELPERS
 // ============================================
 
-export function distance(p1, p2) {
+export function distance(p1: Point, p2: Point): number {
   const dx = p2.x - p1.x;
   const dy = p2.y - p1.y;
   return Math.sqrt(dx * dx + dy * dy);
 }
 
-export function polygonArea(vertices) {
+export function polygonArea(vertices: Point[]): number {
   if (vertices.length < 3) return 0;
   
   let area = 0;
@@ -83,7 +140,7 @@ export function polygonArea(vertices) {
   return Math.abs(area / 2);
 }
 
-export function getBounds(vertices) {
+export function getBounds(vertices: Point[]): { min: Point; max: Point } {
   if (vertices.length === 0) {
     return { min: { x: 0, y: 0 }, max: { x: 0, y: 0 } };
   }
@@ -97,7 +154,7 @@ export function getBounds(vertices) {
   };
 }
 
-export function getCenter(vertices) {
+export function getCenter(vertices: Point[]): Point {
   const bounds = getBounds(vertices);
   return {
     x: (bounds.min.x + bounds.max.x) / 2,
@@ -109,14 +166,18 @@ export function getCenter(vertices) {
 // SNAPPING HELPERS
 // ============================================
 
-export function snapToGrid(point, gridSize) {
+export function snapToGrid(point: Point, gridSize: number): Point {
   return {
     x: Math.round(point.x / gridSize) * gridSize,
     y: Math.round(point.y / gridSize) * gridSize,
   };
 }
 
-export function findSnapTarget(point, allVertices, threshold) {
+export function findSnapTarget(
+  point: Point,
+  allVertices: Point[],
+  threshold: number
+): Point | null {
   for (const vertex of allVertices) {
     if (distance(point, vertex) <= threshold) {
       return vertex;
@@ -126,27 +187,10 @@ export function findSnapTarget(point, allVertices, threshold) {
 }
 
 // ============================================
-// POINT IN POLYGON TEST
-// ============================================
-
-export function pointInPolygon(point, vertices) {
-  let inside = false;
-  for (let i = 0, j = vertices.length - 1; i < vertices.length; j = i++) {
-    const xi = vertices[i].x, yi = vertices[i].y;
-    const xj = vertices[j].x, yj = vertices[j].y;
-    
-    const intersect = ((yi > point.y) !== (yj > point.y))
-        && (point.x < (xj - xi) * (point.y - yi) / (yj - yi) + xi);
-    if (intersect) inside = !inside;
-  }
-  return inside;
-}
-
-// ============================================
 // POLYLINE SIMPLIFICATION (Ramer-Douglas-Peucker)
 // ============================================
 
-function perpendicularDistance(point, lineStart, lineEnd) {
+function perpendicularDistance(point: Point, lineStart: Point, lineEnd: Point): number {
   const dx = lineEnd.x - lineStart.x;
   const dy = lineEnd.y - lineStart.y;
   
@@ -160,7 +204,7 @@ function perpendicularDistance(point, lineStart, lineEnd) {
   return num / den;
 }
 
-export function simplifyPolyline(points, epsilon) {
+export function simplifyPolyline(points: Point[], epsilon: number): Point[] {
   if (points.length <= 2) return points;
   
   let maxDistance = 0;
@@ -181,51 +225,4 @@ export function simplifyPolyline(points, epsilon) {
   }
   
   return [points[0], points[points.length - 1]];
-}
-
-// ============================================
-// RECTANGLE HELPERS
-// ============================================
-
-export function createRectangleVertices(points) {
-  if (points.length !== 2) return points;
-
-  const [start, end] = points;
-  return [
-    { x: start.x, y: start.y },
-    { x: end.x, y: start.y },
-    { x: end.x, y: end.y },
-    { x: start.x, y: end.y },
-  ];
-}
-
-export function constrainRectangleWidth(vertices, targetWidth) {
-  if (vertices.length !== 4) return vertices;
-
-  const width = Math.abs(vertices[1].x - vertices[0].x);
-  const height = Math.abs(vertices[3].y - vertices[0].y);
-
-  const isHorizontal = width > height;
-
-  if (isHorizontal) {
-    const centerY = (vertices[0].y + vertices[3].y) / 2;
-    const halfWidth = targetWidth / 2;
-
-    return [
-      { x: vertices[0].x, y: centerY - halfWidth },
-      { x: vertices[1].x, y: centerY - halfWidth },
-      { x: vertices[2].x, y: centerY + halfWidth },
-      { x: vertices[3].x, y: centerY + halfWidth },
-    ];
-  } else {
-    const centerX = (vertices[0].x + vertices[1].x) / 2;
-    const halfWidth = targetWidth / 2;
-
-    return [
-      { x: centerX - halfWidth, y: vertices[0].y },
-      { x: centerX + halfWidth, y: vertices[1].y },
-      { x: centerX + halfWidth, y: vertices[2].y },
-      { x: centerX - halfWidth, y: vertices[3].y },
-    ];
-  }
 }

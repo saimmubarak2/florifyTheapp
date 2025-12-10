@@ -1,4 +1,14 @@
+/* Import fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* Tailwind imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* App styles */
 @import './styles/landing.css';
 @import './styles/garden-card.css';
 @import './styles/garden-wizard.css';
@@ -14,4 +24,71 @@ body {
   font-family: 'Poppins', sans-serif;
   background-color: #ffffff;
   color: #144345;
+}
+
+/* Floorplan Builder Styles - CSS Variables */
+:root {
+  --button-outline: rgba(0,0,0, .10);
+  --badge-outline: rgba(0,0,0, .05);
+  --opaque-button-border-intensity: -8;
+  --elevate-1: rgba(0,0,0, .03);
+  --elevate-2: rgba(0,0,0, .08);
+
+  --background: 0 0% 98%;
+  --foreground: 0 0% 10%;
+  --border: 35 10.53% 77.65%;
+  --card: 180 6.6667% 97.0588%;
+  --card-foreground: 210 25% 7.8431%;
+  --card-border: 180 6.6667% 93%;
+  --sidebar: 180 6.6667% 97.0588%;
+  --sidebar-foreground: 210 25% 7.8431%;
+  --sidebar-border: 205 25% 90.5882%;
+  --sidebar-primary: 203.8863 88.2845% 53.1373%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 211.5789 51.3514% 92.7451%;
+  --sidebar-accent-foreground: 203.8863 88.2845% 53.1373%;
+  --sidebar-ring: 166.76 29.82% 44.71%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 210 25% 7.8431%;
+  --popover-border: 180 6.6667% 95%;
+  --primary: 217 91% 60%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 8.24%;
+  --secondary-foreground: 70.91 21.57% 90%;
+  --muted: 72 12.82% 84.71%;
+  --muted-foreground: 72 2.39% 40.98%;
+  --accent: 0 0% 93%;
+  --accent-foreground: 0 0% 10%;
+  --destructive: 0.49 54.19% 55.49%;
+  --destructive-foreground: 0 0% 100%;
+  --input: 35.29 11.41% 70.78%;
+  --ring: 166.76 29.82% 44.71%;
+  --chart-1: 203.8863 88.2845% 53.1373%;
+  --chart-2: 159.7826 100% 36.0784%;
+  --chart-3: 42.029 92.8251% 56.2745%;
+  --chart-4: 147.1429 78.5047% 41.9608%;
+  --chart-5: 341.4894 75.2% 50.9804%;
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Source Serif Pro', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius: 0.875rem;
+  
+  --canvas-sheet: 0 0% 100%;
+  --canvas-grid: 0 0% 85%;
+  --canvas-snap: 142 76% 36%;
+  --handle: 217 91% 60%;
+  --handle-hover: 217 91% 50%;
+  --handle-active: 217 91% 40%;
+}
+
+/* Tailwind base layer integration */
+@layer base {
+  .floorplan-wrapper * {
+    border-color: hsl(var(--border));
+  }
+
+  .floorplan-wrapper {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
 }

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import FloorplanBuilder from '../FloorplanBuilder';
 import Button from '../Button';
 import InputField from '../InputField';
 import { saveGardenToLocal, generateGardenId } from '../../utils/localDatabase';
 import './IntegratedGardenWizard.css';
+
+// Lazy load the FloorplanWrapper - it's a heavy component
+const FloorplanWrapper = React.lazy(() => import('../../floorplan/FloorplanWrapper'));
 
 // Pakistan cities for the dropdown
 const PAKISTAN_CITIES = [
@@ -66,7 +68,6 @@ const IntegratedGardenWizard = ({ onClose, onGardenCreated, userEmail }) => {
     city: '',
     description: ''
   });
-  const [floorplanData, setFloorplanData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -85,13 +86,14 @@ const IntegratedGardenWizard = ({ onClose, onGardenCreated, userEmail }) => {
     setError('');
   };
 
-  const handleFloorplanDataChange = (data) => {
-    setFloorplanData(data);
-  };
-
   const handleFloorplanComplete = async (result) => {
     // Floorplan is complete, save the garden
     await handleSave(result);
+  };
+
+  const handleFloorplanCancel = () => {
+    // Go back to step 3
+    setCurrentStep(3);
   };
 
   const nextStep = () => {
@@ -114,8 +116,6 @@ const IntegratedGardenWizard = ({ onClose, onGardenCreated, userEmail }) => {
         return formData.city.trim().length > 0;
       case 3:
         return true; // Description is optional
-      case 4:
-        return floorplanData && floorplanData.shapes && floorplanData.shapes.length > 0;
       default:
         return false;
     }
@@ -135,8 +135,7 @@ const IntegratedGardenWizard = ({ onClose, onGardenCreated, userEmail }) => {
         floorplanData: fpData,
         skinnedPNG,
         nonSkinnedPNG,
-        measurements,
-        measurementSummary
+        measurements
       } = floorplanResult;
 
       // Create garden data
@@ -150,7 +149,6 @@ const IntegratedGardenWizard = ({ onClose, onGardenCreated, userEmail }) => {
         skinnedPNG: skinnedPNG,
         nonSkinnedPNG: nonSkinnedPNG,
         measurements: measurements,
-        measurementSummary: measurementSummary,
         createdAt: new Date().toISOString()
       };
 
@@ -164,7 +162,6 @@ const IntegratedGardenWizard = ({ onClose, onGardenCreated, userEmail }) => {
     } catch (err) {
       console.error('Error saving garden:', err);
       setError('Failed to save garden. Please try again.');
-    } finally {
       setLoading(false);
     }
   };
@@ -243,10 +240,17 @@ const IntegratedGardenWizard = ({ onClose, onGardenCreated, userEmail }) => {
         return (
           <div className="step-content floorplan-step">
             <div className="floorplan-wrapper">
-              <FloorplanBuilder
-                onComplete={handleFloorplanComplete}
-                onDataChange={handleFloorplanDataChange}
-              />
+              <React.Suspense fallback={
+                <div className="loading-floorplan">
+                  <div className="loading-spinner"></div>
+                  <p>Loading Floorplan Builder...</p>
+                </div>
+              }>
+                <FloorplanWrapper
+                  onComplete={handleFloorplanComplete}
+                  onCancel={handleFloorplanCancel}
+                />
+              </React.Suspense>
             </div>
           </div>
         );
@@ -303,7 +307,7 @@ const IntegratedGardenWizard = ({ onClose, onGardenCreated, userEmail }) => {
                 disabled={!validateStep(currentStep)}
                 className="primary-btn"
               >
-                NEXT →
+                {currentStep === 3 ? 'CREATE FLOORPLAN →' : 'NEXT →'}
               </Button>
             </div>
           </div>
