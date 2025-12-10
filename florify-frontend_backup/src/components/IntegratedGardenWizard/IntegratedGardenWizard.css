@@ -1,0 +1,525 @@
+/* Integrated Garden Wizard Styles */
+
+.integrated-garden-wizard {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Arial', sans-serif;
+}
+
+.integrated-garden-wizard .wizard-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95vw;
+  height: 90vh;
+  max-width: 1400px;
+  max-height: 900px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.integrated-garden-wizard .wizard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background: linear-gradient(135deg, #144345 0%, #2a6366 100%);
+  border-bottom: none;
+}
+
+.integrated-garden-wizard .wizard-title {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.integrated-garden-wizard .close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.integrated-garden-wizard .close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.integrated-garden-wizard .wizard-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.integrated-garden-wizard .wizard-sidebar {
+  width: 380px;
+  background: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #dee2e6;
+  overflow: hidden;
+}
+
+.integrated-garden-wizard .wizard-progress {
+  padding: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.integrated-garden-wizard .progress-step {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 12px 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: white;
+  border: 2px solid transparent;
+}
+
+.integrated-garden-wizard .progress-step.active {
+  background: #e8f5e9;
+  border-color: #144345;
+}
+
+.integrated-garden-wizard .progress-step.current {
+  background: linear-gradient(135deg, #144345, #2a6366);
+  color: white;
+  transform: translateX(5px);
+}
+
+.integrated-garden-wizard .step-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 15px;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.integrated-garden-wizard .progress-step.active .step-number {
+  background: #144345;
+  color: white;
+}
+
+.integrated-garden-wizard .progress-step.current .step-number {
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.integrated-garden-wizard .step-info {
+  flex: 1;
+}
+
+.integrated-garden-wizard .step-title-small {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.integrated-garden-wizard .step-desc-small {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.integrated-garden-wizard .step-content-wrapper {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.step-content-panel {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.step-content-panel .step-header {
+  margin-bottom: 25px;
+}
+
+.step-content-panel .step-header h3 {
+  color: #144345;
+  font-size: 20px;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+.step-content-panel .step-header p {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.step-content-panel .step-header.compact {
+  margin-bottom: 15px;
+}
+
+.step-content-panel .step-header.compact h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.step-content-panel .step-header.compact p {
+  font-size: 13px;
+}
+
+.step-content-panel .input-group {
+  margin-bottom: 20px;
+}
+
+.step-content-panel .input-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.step-content-panel .city-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+
+.step-content-panel .city-select:focus {
+  outline: none;
+  border-color: #144345;
+  box-shadow: 0 0 0 3px rgba(20, 67, 69, 0.1);
+}
+
+.step-content-panel .city-select:hover {
+  border-color: #144345;
+}
+
+.selected-city-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 10px 15px;
+  background: #e8f5e9;
+  border-radius: 6px;
+  color: #144345;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.city-icon {
+  font-size: 18px;
+}
+
+.step-content-panel .description-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 120px;
+  transition: all 0.3s ease;
+}
+
+.step-content-panel .description-textarea:focus {
+  outline: none;
+  border-color: #144345;
+  box-shadow: 0 0 0 3px rgba(20, 67, 69, 0.1);
+}
+
+.step-content-panel .description-textarea::placeholder {
+  color: #999;
+}
+
+.floorplan-step {
+  padding-bottom: 10px;
+}
+
+.drawing-status {
+  margin-top: 10px;
+}
+
+.status-complete,
+.status-pending {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 15px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.status-complete {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.status-pending {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.status-icon {
+  font-size: 18px;
+}
+
+/* Garden Summary */
+.garden-summary {
+  padding: 15px 20px;
+  background: white;
+  border-top: 1px solid #dee2e6;
+  margin-top: auto;
+}
+
+.garden-summary h4 {
+  margin: 0 0 12px 0;
+  color: #144345;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 13px;
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+}
+
+.summary-label {
+  color: #666;
+  font-weight: 500;
+}
+
+.summary-value {
+  color: #333;
+  font-weight: 600;
+  text-align: right;
+  max-width: 60%;
+}
+
+.summary-value.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Main Panel */
+.integrated-garden-wizard .wizard-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  min-height: 0;
+}
+
+.integrated-garden-wizard .editor-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Preview Panel */
+.preview-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.preview-content {
+  text-align: center;
+  max-width: 400px;
+  padding: 40px;
+}
+
+.preview-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.preview-content h3 {
+  color: #144345;
+  font-size: 24px;
+  margin: 0 0 15px 0;
+  font-weight: 600;
+}
+
+.preview-content p {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Wizard Actions */
+.integrated-garden-wizard .wizard-actions {
+  padding: 15px 25px;
+  background: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.integrated-garden-wizard .action-left,
+.integrated-garden-wizard .action-right {
+  display: flex;
+  gap: 10px;
+}
+
+.integrated-garden-wizard .primary-btn {
+  background: linear-gradient(135deg, #144345 0%, #2a6366 100%);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.integrated-garden-wizard .primary-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(20, 67, 69, 0.3);
+}
+
+.integrated-garden-wizard .primary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.integrated-garden-wizard .primary-btn.save-btn {
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+}
+
+.integrated-garden-wizard .primary-btn.save-btn:hover:not(:disabled) {
+  box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+}
+
+.integrated-garden-wizard .secondary-btn {
+  background: white;
+  color: #144345;
+  border: 2px solid #144345;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.integrated-garden-wizard .secondary-btn:hover {
+  background: #144345;
+  color: white;
+}
+
+/* Error Message */
+.integrated-garden-wizard .error-message {
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 12px 25px;
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .integrated-garden-wizard .wizard-sidebar {
+    width: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .integrated-garden-wizard .wizard-layout {
+    flex-direction: column;
+  }
+
+  .integrated-garden-wizard .wizard-sidebar {
+    width: 100%;
+    max-height: 300px;
+  }
+
+  .integrated-garden-wizard .wizard-main {
+    flex: 1;
+  }
+
+  .preview-panel {
+    min-height: 200px;
+  }
+
+  .preview-icon {
+    font-size: 48px;
+  }
+
+  .preview-content h3 {
+    font-size: 20px;
+  }
+}
