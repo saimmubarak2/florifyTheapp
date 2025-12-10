@@ -344,6 +344,82 @@
   font-size: 14px;
 }
 
+/* Floorplan Mode - Full Screen */
+.integrated-wizard-modal.floorplan-mode {
+  width: 98vw;
+  max-width: none;
+  height: 95vh;
+  max-height: none;
+}
+
+.integrated-wizard-modal.floorplan-mode .wizard-content {
+  padding: 0;
+  overflow: hidden;
+}
+
+.integrated-wizard-modal.floorplan-mode .step-content.floorplan-step {
+  height: 100%;
+  padding: 0;
+}
+
+.integrated-wizard-modal .floorplan-wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+/* Loading Floorplan State */
+.integrated-wizard-modal .loading-floorplan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 16px;
+  color: #144345;
+}
+
+.integrated-wizard-modal .loading-floorplan p {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Loading Overlay */
+.integrated-wizard-modal .loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 100;
+}
+
+.integrated-wizard-modal .loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #e0e0e0;
+  border-top-color: #144345;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.integrated-wizard-modal .loading-overlay p {
+  font-size: 16px;
+  color: #144345;
+  font-weight: 500;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .integrated-wizard-overlay {
