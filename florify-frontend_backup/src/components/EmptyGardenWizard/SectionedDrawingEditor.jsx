@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 
 const SectionedDrawingEditor = ({ blueprintModel, onBlueprintChange, onSectionsComplete }) => {
   const svgRef = useRef(null);
@@ -152,7 +152,7 @@ const SectionedDrawingEditor = ({ blueprintModel, onBlueprintChange, onSectionsC
   };
 
   // Handle mouse up to finish drawing
-  const handleMouseUp = (event) => {
+  const handleMouseUp = () => {
     if (!isDrawing) return;
     
     setIsDrawing(false);
@@ -178,7 +178,7 @@ const SectionedDrawingEditor = ({ blueprintModel, onBlueprintChange, onSectionsC
   };
 
   // Handle double click to finish polygon
-  const handleDoubleClick = (event) => {
+  const handleDoubleClick = () => {
     if (drawingTool === 'polygon' && currentPath.length >= 3) {
       setIsDrawing(false);
       

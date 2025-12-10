@@ -2,19 +2,16 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .garden-detail-container {
   background: white;
   border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  max-width: 800px;
-  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  max-width: 1200px;
+  margin: 0 auto;
   animation: slideUp 0.6s ease-out;
+  overflow: hidden;
 }
 
 @keyframes slideUp {
@@ -32,16 +29,44 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid #f0f0f0;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  color: white;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.back-btn {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: none !important;
+  color: white !important;
+  padding: 8px 16px !important;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+}
+
+.header-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .garden-header h1 {
-  color: #333;
-  font-size: 2.5rem;
+  color: white;
+  font-size: 1.8rem;
   margin: 0;
   font-weight: 700;
+}
+
+.location-badge {
+  font-size: 0.9rem;
+  opacity: 0.9;
 }
 
 .garden-actions {
@@ -49,14 +74,48 @@
   gap: 1rem;
 }
 
+/* Tabs */
+.detail-tabs {
+  display: flex;
+  background: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  padding: 0 1rem;
+}
+
+.tab-btn {
+  padding: 1rem 1.5rem;
+  border: none;
+  background: transparent;
+  color: #6c757d;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tab-btn:hover {
+  color: #27ae60;
+  background: rgba(39, 174, 96, 0.05);
+}
+
+.tab-btn.active {
+  color: #27ae60;
+  border-bottom-color: #27ae60;
+  background: white;
+}
+
 .garden-content {
-  margin-bottom: 2rem;
+  padding: 2rem;
+  min-height: 400px;
 }
 
 .edit-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  max-width: 600px;
 }
 
 .form-group {
@@ -68,7 +127,7 @@
 .form-group label {
   font-weight: 600;
   color: #333;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .form-group textarea {
@@ -84,39 +143,315 @@
 
 .form-group textarea:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #27ae60;
 }
 
-.garden-info {
+/* Info Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.info-card {
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
 }
 
-.info-section h3 {
-  color: #667eea;
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
+.info-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.info-content h3 {
+  color: #6c757d;
+  font-size: 0.85rem;
+  margin: 0 0 5px 0;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.info-content p {
+  color: #2c3e50;
+  font-size: 1.1rem;
+  margin: 0;
   font-weight: 600;
 }
 
-.info-section p {
-  color: #666;
+.description-section {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.description-section h3 {
+  color: #2c3e50;
   font-size: 1.1rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.description-section p {
+  color: #495057;
   line-height: 1.6;
   margin: 0;
 }
 
-.garden-footer {
-  display: flex;
-  justify-content: center;
-  padding-top: 1rem;
-  border-top: 2px solid #f0f0f0;
+/* Preview Section */
+.preview-section {
+  margin-top: 2rem;
 }
 
+.preview-section h3 {
+  color: #2c3e50;
+  font-size: 1.1rem;
+  margin: 0 0 1rem 0;
+}
+
+.preview-image-container {
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+}
+
+.preview-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Floorplan Section */
+.floorplan-section h2 {
+  color: #2c3e50;
+  margin: 0 0 1.5rem 0;
+}
+
+.floorplan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.floorplan-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #e9ecef;
+}
+
+.floorplan-card h3 {
+  color: #2c3e50;
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.floorplan-card p {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin: 0 0 1rem 0;
+}
+
+.floorplan-image-container {
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+}
+
+.floorplan-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.no-image {
+  padding: 3rem;
+  text-align: center;
+  color: #6c757d;
+  background: #e9ecef;
+  border-radius: 8px;
+}
+
+/* Legend Section */
+.legend-section {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.legend-section h3 {
+  color: #2c3e50;
+  font-size: 1rem;
+  margin: 0 0 1rem 0;
+}
+
+.legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+/* Measurements Section */
+.measurements-section h2 {
+  color: #2c3e50;
+  margin: 0 0 0.5rem 0;
+}
+
+.section-description {
+  color: #6c757d;
+  margin: 0 0 1.5rem 0;
+}
+
+.measurements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.measurement-card {
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.measurement-label {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+.measurement-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.measurement-raw {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.no-measurements {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  color: #6c757d;
+}
+
+.shape-counts {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.shape-counts h3 {
+  color: #2c3e50;
+  font-size: 1rem;
+  margin: 0 0 1rem 0;
+}
+
+.counts-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.count-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.count-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.count-label {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+/* Downloads Section */
+.downloads-section h2 {
+  color: #2c3e50;
+  margin: 0 0 1.5rem 0;
+}
+
+.download-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.download-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.download-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.download-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.download-card h3 {
+  color: #2c3e50;
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.download-card p {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.5;
+}
+
+/* Loading and Error States */
 .loading, .error {
   text-align: center;
-  padding: 2rem;
+  padding: 4rem 2rem;
+  background: white;
+  border-radius: 20px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .loading {
@@ -140,22 +475,51 @@
     padding: 1rem;
   }
   
-  .garden-detail-container {
-    padding: 1.5rem;
-  }
-  
   .garden-header {
     flex-direction: column;
     gap: 1rem;
-    align-items: stretch;
+    padding: 1.5rem;
+  }
+  
+  .header-left {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
   }
   
   .garden-header h1 {
-    font-size: 2rem;
-    text-align: center;
+    font-size: 1.5rem;
   }
   
   .garden-actions {
+    width: 100%;
     justify-content: center;
+  }
+  
+  .detail-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .tab-btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  
+  .garden-content {
+    padding: 1.5rem;
+  }
+  
+  .floorplan-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .measurements-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .download-cards {
+    grid-template-columns: 1fr;
   }
 }
