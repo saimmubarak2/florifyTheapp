@@ -1,0 +1,394 @@
+/**
+ * FloorplanBuilder Styles
+ */
+
+.floorplan-builder {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 500px;
+  background: #f8fafc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Wizard Steps Header */
+.floorplan-wizard-steps {
+  display: flex;
+  background: #1e293b;
+  padding: 12px 16px;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.wizard-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.wizard-step:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.wizard-step.active {
+  background: #144345;
+}
+
+.wizard-step.completed {
+  background: rgba(34, 197, 94, 0.2);
+}
+
+.wizard-step .step-number {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.wizard-step.active .step-number {
+  background: #fff;
+  color: #144345;
+}
+
+.wizard-step.completed .step-number {
+  background: #22c55e;
+  color: #fff;
+}
+
+.wizard-step .step-title {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Main Layout */
+.floorplan-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Left Panel */
+.floorplan-panel {
+  width: 280px;
+  background: #fff;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.panel-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  padding: 16px 16px 8px;
+  margin: 0;
+}
+
+.panel-description {
+  font-size: 14px;
+  color: #64748b;
+  padding: 0 16px 16px;
+  margin: 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.panel-content {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.panel-content h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 12px;
+}
+
+.panel-content h5 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  margin: 16px 0 8px;
+}
+
+.preset-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.preset-btn {
+  padding: 12px 16px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.preset-btn:hover {
+  background: #e2e8f0;
+  border-color: #cbd5e1;
+}
+
+.tool-btn {
+  width: 100%;
+  padding: 10px 16px;
+  background: #144345;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 8px;
+}
+
+.tool-btn:hover {
+  background: #0f3536;
+}
+
+.tool-btn.active {
+  background: #22c55e;
+}
+
+.reset-btn {
+  width: 100%;
+  padding: 10px 16px;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #dc2626;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 12px;
+}
+
+.reset-btn:hover {
+  background: #fecaca;
+}
+
+.divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 16px 0;
+}
+
+.hint {
+  font-size: 12px;
+  color: #22c55e;
+  background: #f0fdf4;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.measurements-preview {
+  background: #f1f5f9;
+  padding: 12px;
+  border-radius: 6px;
+  margin-top: 16px;
+}
+
+.measurements-preview ul {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13px;
+  color: #475569;
+}
+
+.measurements-preview li {
+  margin-bottom: 4px;
+}
+
+/* Navigation */
+.panel-nav {
+  padding: 16px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  gap: 8px;
+}
+
+.nav-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-btn.prev {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+}
+
+.nav-btn.prev:hover:not(:disabled) {
+  background: #e2e8f0;
+}
+
+.nav-btn.prev:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nav-btn.next {
+  background: #144345;
+  border: none;
+  color: #fff;
+}
+
+.nav-btn.next:hover {
+  background: #0f3536;
+}
+
+.nav-btn.complete {
+  background: #22c55e;
+  border: none;
+  color: #fff;
+}
+
+.nav-btn.complete:hover {
+  background: #16a34a;
+}
+
+/* Canvas Container */
+.floorplan-canvas-container {
+  flex: 1;
+  position: relative;
+  background: #f1f5f9;
+  overflow: hidden;
+}
+
+.floorplan-canvas {
+  display: block;
+  cursor: default;
+}
+
+.floorplan-canvas.drawing {
+  cursor: crosshair;
+}
+
+/* Canvas Controls */
+.canvas-controls {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 8px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.canvas-controls button {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.canvas-controls button:hover {
+  background: #e2e8f0;
+}
+
+.canvas-controls span {
+  font-size: 13px;
+  font-weight: 500;
+  color: #475569;
+  min-width: 40px;
+  text-align: center;
+}
+
+/* Tool Indicator */
+.tool-indicator {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #475569;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Mouse Position */
+.mouse-position {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-family: monospace;
+  color: #64748b;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .floorplan-main {
+    flex-direction: column;
+  }
+  
+  .floorplan-panel {
+    width: 100%;
+    max-height: 300px;
+    border-right: none;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .floorplan-wizard-steps {
+    padding: 8px 12px;
+  }
+  
+  .wizard-step {
+    padding: 6px 12px;
+  }
+  
+  .wizard-step .step-title {
+    display: none;
+  }
+}

@@ -50,19 +50,29 @@ const GardenCard = ({ garden, onClick }) => {
         )}
         <p className="garden-date">Created {formatDate(garden.createdAt)}</p>
         
-        {measurements.bottomBoundaryDistance && (
+        {(measurements.buildingToBottomBoundary !== undefined || measurements.plotWidth !== undefined) && (
           <div className="garden-measurements">
-            <div className="measurement-item">
-              <span className="measurement-icon">📏</span>
-              <span className="measurement-text">
-                {measurements.bottomBoundaryDistance}mm to boundary
-              </span>
-            </div>
-            {measurements.drivewayDistanceFromWall && (
+            {measurements.plotWidth && measurements.plotHeight && (
+              <div className="measurement-item">
+                <span className="measurement-icon">📐</span>
+                <span className="measurement-text">
+                  Plot: {measurements.plotWidth.toFixed(0)} × {measurements.plotHeight.toFixed(0)} ft
+                </span>
+              </div>
+            )}
+            {measurements.buildingToBottomBoundary !== null && (
+              <div className="measurement-item">
+                <span className="measurement-icon">🏠</span>
+                <span className="measurement-text">
+                  {measurements.buildingToBottomBoundary.toFixed(1)} ft to boundary
+                </span>
+              </div>
+            )}
+            {measurements.drivewayDistanceFromOppositeWall !== null && measurements.drivewayPosition && (
               <div className="measurement-item">
                 <span className="measurement-icon">🚗</span>
                 <span className="measurement-text">
-                  Driveway: {measurements.drivewayDistanceFromWall}mm from {measurements.drivewayPosition === 'left' ? 'right' : 'left'} wall
+                  Driveway: {measurements.drivewayDistanceFromOppositeWall.toFixed(1)} ft from {measurements.drivewayPosition === 'left' ? 'right' : 'left'} wall
                 </span>
               </div>
             )}
@@ -73,7 +83,7 @@ const GardenCard = ({ garden, onClick }) => {
           <div className="stat-item">
             <span className="stat-label">Elements</span>
             <span className="stat-value">
-              {garden.blueprintData?.shapes?.length || 0}
+              {garden.floorplanData?.shapes?.length || garden.blueprintData?.shapes?.length || 0}
             </span>
           </div>
           <div className="stat-item">

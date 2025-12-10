@@ -286,36 +286,98 @@ const GardenDetailPage = () => {
             )}
 
             {/* Measurements Section */}
-            {(measurements.bottomBoundaryDistance || measurements.drivewayDistanceFromWall) && (
+            {(measurements.buildingToBottomBoundary !== undefined || 
+              measurements.drivewayDistanceFromOppositeWall !== undefined ||
+              measurements.plotWidth !== undefined) && (
               <div className="measurements-section">
                 <h2>📏 Extracted Measurements</h2>
                 <div className="measurements-grid">
-                  {measurements.bottomBoundaryDistance && (
+                  {/* Plot Dimensions */}
+                  {measurements.plotWidth && measurements.plotHeight && (
+                    <div className="measurement-card">
+                      <div className="measurement-icon">📐</div>
+                      <div className="measurement-label">Plot Size</div>
+                      <div className="measurement-value">
+                        {measurements.plotWidth.toFixed(1)} × {measurements.plotHeight.toFixed(1)} ft
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Building Dimensions */}
+                  {measurements.buildingWidth && measurements.buildingHeight && (
+                    <div className="measurement-card">
+                      <div className="measurement-icon">🏠</div>
+                      <div className="measurement-label">Building Size</div>
+                      <div className="measurement-value">
+                        {measurements.buildingWidth.toFixed(1)} × {measurements.buildingHeight.toFixed(1)} ft
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Building to Bottom Boundary */}
+                  {measurements.buildingToBottomBoundary !== null && (
                     <div className="measurement-card">
                       <div className="measurement-icon">🏠↔️🧱</div>
                       <div className="measurement-label">Building to Bottom Boundary</div>
                       <div className="measurement-value">
-                        {measurements.bottomBoundaryDistance} mm
+                        {measurements.buildingToBottomBoundary.toFixed(1)} ft
                       </div>
-                      <div className="measurement-converted">
-                        ≈ {(measurements.bottomBoundaryDistance / 10).toFixed(1)} cm
-                        ≈ {(measurements.bottomBoundaryDistance / 304.8).toFixed(2)} ft
+                    </div>
+                  )}
+
+                  {/* Building to Top Boundary */}
+                  {measurements.buildingToTopBoundary !== null && measurements.buildingToTopBoundary > 0 && (
+                    <div className="measurement-card">
+                      <div className="measurement-icon">🏠↔️🧱</div>
+                      <div className="measurement-label">Building to Top Boundary</div>
+                      <div className="measurement-value">
+                        {measurements.buildingToTopBoundary.toFixed(1)} ft
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Building to Left Boundary */}
+                  {measurements.buildingToLeftBoundary !== null && measurements.buildingToLeftBoundary > 0 && (
+                    <div className="measurement-card">
+                      <div className="measurement-icon">🏠↔️🧱</div>
+                      <div className="measurement-label">Building to Left Boundary</div>
+                      <div className="measurement-value">
+                        {measurements.buildingToLeftBoundary.toFixed(1)} ft
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Building to Right Boundary */}
+                  {measurements.buildingToRightBoundary !== null && measurements.buildingToRightBoundary > 0 && (
+                    <div className="measurement-card">
+                      <div className="measurement-icon">🏠↔️🧱</div>
+                      <div className="measurement-label">Building to Right Boundary</div>
+                      <div className="measurement-value">
+                        {measurements.buildingToRightBoundary.toFixed(1)} ft
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Driveway Dimensions */}
+                  {measurements.drivewayWidth && measurements.drivewayLength && (
+                    <div className="measurement-card">
+                      <div className="measurement-icon">🚗</div>
+                      <div className="measurement-label">Driveway Size</div>
+                      <div className="measurement-value">
+                        {measurements.drivewayWidth.toFixed(1)} × {measurements.drivewayLength.toFixed(1)} ft
                       </div>
                     </div>
                   )}
                   
-                  {measurements.drivewayDistanceFromWall && (
+                  {/* Driveway Distance from Opposite Wall */}
+                  {measurements.drivewayDistanceFromOppositeWall !== null && measurements.drivewayPosition && (
                     <div className="measurement-card">
                       <div className="measurement-icon">🚗↔️🧱</div>
                       <div className="measurement-label">
-                        Driveway ({measurements.drivewayPosition}) to {measurements.drivewayPosition === 'left' ? 'Right' : 'Left'} Wall
+                        Driveway ({measurements.drivewayPosition}) to {measurements.drivewayPosition === 'left' ? 'Right' : 'Left'} Boundary
                       </div>
                       <div className="measurement-value">
-                        {measurements.drivewayDistanceFromWall} mm
-                      </div>
-                      <div className="measurement-converted">
-                        ≈ {(measurements.drivewayDistanceFromWall / 10).toFixed(1)} cm
-                        ≈ {(measurements.drivewayDistanceFromWall / 304.8).toFixed(2)} ft
+                        {measurements.drivewayDistanceFromOppositeWall.toFixed(1)} ft
                       </div>
                     </div>
                   )}
@@ -347,7 +409,7 @@ const GardenDetailPage = () => {
                 <div className="info-card">
                   <span className="info-label">Elements Drawn</span>
                   <span className="info-value">
-                    {garden.blueprintData?.shapes?.length || 0} shapes
+                    {(garden.floorplanData?.shapes?.length || garden.blueprintData?.shapes?.length || 0)} shapes
                   </span>
                 </div>
               </div>
@@ -360,30 +422,58 @@ const GardenDetailPage = () => {
               )}
             </div>
 
-            {/* Blueprint Data Section */}
-            {garden.blueprintData && garden.blueprintData.shapes.length > 0 && (
+            {/* Floorplan Data Section */}
+            {garden.floorplanData && garden.floorplanData.shapes && garden.floorplanData.shapes.length > 0 && (
               <div className="blueprint-data-section">
-                <h2>🗺️ Blueprint Elements</h2>
+                <h2>🗺️ Floorplan Elements</h2>
                 <div className="elements-grid">
                   <div className="element-card buildings">
-                    <span className="element-icon">🏠</span>
-                    <span className="element-label">Buildings</span>
+                    <span className="element-icon">📐</span>
+                    <span className="element-label">Plot Boundary</span>
                     <span className="element-count">
-                      {garden.blueprintData.shapes.filter(s => s.role === 'building').length}
+                      {garden.floorplanData.shapes.filter(s => s.layer === 'plot').length}
+                    </span>
+                  </div>
+                  <div className="element-card buildings">
+                    <span className="element-icon">🏠</span>
+                    <span className="element-label">House/Building</span>
+                    <span className="element-count">
+                      {garden.floorplanData.shapes.filter(s => s.layer === 'house').length}
+                    </span>
+                  </div>
+                  <div className="element-card boundaries">
+                    <span className="element-icon">🧱</span>
+                    <span className="element-label">Walls</span>
+                    <span className="element-count">
+                      {garden.floorplanData.shapes.filter(s => s.layer === 'wall').length}
+                    </span>
+                  </div>
+                  <div className="element-card pathways">
+                    <span className="element-icon">🚗</span>
+                    <span className="element-label">Driveways</span>
+                    <span className="element-count">
+                      {garden.floorplanData.driveways?.length || 0}
                     </span>
                   </div>
                   <div className="element-card pathways">
                     <span className="element-icon">🛤️</span>
                     <span className="element-label">Pathways</span>
                     <span className="element-count">
-                      {garden.blueprintData.shapes.filter(s => s.role === 'pathway').length}
+                      {garden.floorplanData.pathways?.length || 0}
                     </span>
                   </div>
-                  <div className="element-card boundaries">
-                    <span className="element-icon">🧱</span>
-                    <span className="element-label">Boundaries</span>
+                  <div className="element-card pathways">
+                    <span className="element-icon">🏡</span>
+                    <span className="element-label">Patios</span>
                     <span className="element-count">
-                      {garden.blueprintData.shapes.filter(s => s.role === 'boundary').length}
+                      {garden.floorplanData.patios?.length || 0}
+                    </span>
+                  </div>
+                  <div className="element-card pathways">
+                    <span className="element-icon">🚪</span>
+                    <span className="element-label">Doors</span>
+                    <span className="element-count">
+                      {garden.floorplanData.doors?.length || 0}
                     </span>
                   </div>
                 </div>
